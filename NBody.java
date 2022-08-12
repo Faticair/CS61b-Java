@@ -57,7 +57,8 @@ public class NBody {
         * 
         */
 
-        /** Drawing the Initial Universe. */
+        /** Drawing the Universe. */
+        /** Obtain the arges */
         if (args.length < 3){
             System.out.println("More args required!!!");
         }
@@ -65,6 +66,7 @@ public class NBody {
         double dt = Double.valueOf(args[1]);
         String filename = args[2];
 
+        /** Initialization */
         bodies = readBodies(filename);
         String Background = "images/starfield.jpg";
         double t = 0;
@@ -74,10 +76,12 @@ public class NBody {
         StdDraw.setScale(-1 * universeRadius, universeRadius);
         StdDraw.clear();
 
+        /** Calculating and Drawing */
         while (t < T){
             double[] xForce = new double[bodyNum];
             double[] yForce = new double[bodyNum];
-
+            
+            /** Calculate the Net Force */
             for (int j = 0; j < bodyNum; j++){
                 double xxF = bodies[j].calcNetForceExertedByX(bodies);
                 double yyF = bodies[j].calcNetForceExertedByY(bodies);
@@ -85,10 +89,12 @@ public class NBody {
                 yForce[j] = yyF;
             }
 
+            /** Update all bodies' position */
             for (int k = 0; k < bodyNum; k++){
                 bodies[k].update(dt, xForce[k], yForce[k]);
             }
 
+            /** Draw */
             StdDraw.picture(0, 0, Background);
             for (Body d:bodies){
                 d.draw();
