@@ -11,8 +11,8 @@ public class NBody {
 
     public static Body[] readBodies(String FileName){
         In inFile = new In(FileName);
-        universeRadius = inFile.readDouble();
         int N = inFile.readInt();
+        universeRadius = inFile.readDouble();
         Body[] bodies = new Body[N];
         for (int i = 0; i < N; i++){
             double xP = inFile.readDouble();
@@ -104,10 +104,5 @@ public class NBody {
             
             t = t + dt;
         }
-
-        
-
-        
-
     }
 }
