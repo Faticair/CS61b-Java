@@ -1,3 +1,4 @@
+import Project1.ArrayDeque;
 import Project1.LinkedListDeque;
 
 public class LinkedListDequeTest {
@@ -19,5 +20,19 @@ public class LinkedListDequeTest {
         strList.addFirst("Hello,");
         strList.addLast("world.");
         strList.printDeque();
+
+        ArrayDeque<Integer> intArray = new ArrayDeque<>();
+        intArray.addLast(3);
+        intArray.addFirst(2);
+        intArray.addLast(8);
+        intArray.addFirst(1);
+        System.out.println(intArray.get(1));
+        System.out.println(intArray.removeLast());
+        intArray.printDeque();
+        ArrayDeque<Integer> copyArrayDeque = new ArrayDeque<>(intArray);
+        copyArrayDeque.addLast(100);
+        copyArrayDeque.addFirst(0);
+        intArray.printDeque();
+        copyArrayDeque.printDeque();
     }
 }
