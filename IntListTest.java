@@ -12,6 +12,5 @@ public class IntListTest {
 
         IntList res = IntList.catenateRecursive(test, test1);
         res.IntListPrint();
-        
     }
 }
