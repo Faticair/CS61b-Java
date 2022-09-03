@@ -1,20 +1,31 @@
-public class AList {
-    private int[] items;
+public class AList<Item> implements List61B<Item>{
+    private Item[] items;
     private int size;
 
     public AList(){
-        items = new int[100];
+        items = (Item[])new Object[8];
         size = 0;
     }
 
     private void resize(int newsize){
-        int[] a = new int[newsize];
+        Item[] a = (Item[]) new Object[newsize];
         System.arraycopy(this.items, 0, a, 0, size);
         items = a;
     }
 
+    public void addFirst(Item x) {
+        if (size == items.length){
+            this.resize(size * 2);
+        }
+        Item[] a = (Item[]) new Object[this.items.length];
+        System.arraycopy(this.items, 0, a, 1, size);
+        a[0] = x;
+        items = a;
+        this.size += 1;
+    }
+
     /** Inserts X into the back of the list. */
-    public void addLast(int x) {
+    public void addLast(Item x) {
         if (size == items.length){
             this.resize(size * 2);
         }
@@ -22,12 +33,16 @@ public class AList {
         this.size += 1;
     }
 
+    public Item getFirst() {
+        return this.items[0];
+    }
+
     /** Returns the item from the back of the list. */
-    public int getLast() {
+    public Item getLast() {
         return this.items[this.size - 1];        
     }
     /** Gets the ith item in the list (0 is the front). */
-    public int get(int i) {
+    public Item get(int i) {
         return this.items[i];        
     }
 
@@ -38,20 +53,33 @@ public class AList {
 
     /** Deletes item from back of the list and
       * returns deleted item. */
-    public int removeLast() {
-        int p = getLast();
+    public Item removeLast() {
+        Item p = getLast();
         size -= 1;
         return p;
     }
 
-    public static int[] insert(int[] arr, int item, int position) {
-        int[] a = new int[arr.length + 1];
-        System.arraycopy(arr, 0, a, 0, position);
-        a[position] = item;
-        System.arraycopy(arr, position, a, position + 1, arr.length - position);
-        return a;
+    public void insert(Item x, int position){
+        if (size == items.length){
+            this.resize(size * 2);
+        }
+        Item[] a = (Item[]) new Object[this.items.length];
+        System.arraycopy(this.items, 0, a, 0, position);
+        a[position] = x;
+        System.arraycopy(this.items, position, a, position + 1, this.size - position);
+        this.items = a;
+        this.size += 1;
     }
 
+    public void printList(){
+        for (int j = 0; j < this.size; j++){
+            System.out.print(this.items[j]);
+            System.out.print(" ");
+        }
+        System.out.println("\n");
+    }
+
+    /** 
     public static void reverse(int[] arr){
         int[] a = new int[arr.length];
         for (int i = 0; i < arr.length; i++){
@@ -81,4 +109,5 @@ public class AList {
         }
         return a;
     }
+    */
 }
