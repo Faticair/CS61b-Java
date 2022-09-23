@@ -11,6 +11,14 @@ public class SLListTest {
         test.insert(100, 5);
         System.out.println(test.removeLast());
         test.printSLList();
+
+        RotatingSLList<Integer> testR = new RotatingSLList<>(null);
+        for (int j = 1; j < 10; j += 2){
+            testR.addLast(j*2);
+        }
+        testR.printSLList();
+        testR.rotateRight();
+        testR.printSLList();
         
         /** AList test:
         AList<Integer> test = new AList<>();

@@ -1,5 +1,5 @@
 public class SLList<Item> implements List61B<Item> {
-    private class ListNode{
+    public class ListNode{
         public Item item;
         public ListNode next;
         
@@ -9,7 +9,7 @@ public class SLList<Item> implements List61B<Item> {
         }
     }
 
-    private ListNode first;
+    public ListNode first;
 
     public SLList(ListNode first){
         this.first = first;
