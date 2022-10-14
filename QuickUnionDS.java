@@ -28,9 +28,10 @@ public class QuickUnionDS implements DisjointSets {
         return nRoot;
     }
 
+    // return set size. 
     public int sizeOf(int v){
         validate(v);
-        return parent(find(v));
+        return -1 * parent(find(v));
     }
 
     public int parent(int v){
@@ -46,8 +47,8 @@ public class QuickUnionDS implements DisjointSets {
         if (pParent == qParent){
             return;
         }
-        int pSize = -1 * sizeOf(pParent);
-        int qSize = -1 * sizeOf(qParent);
+        int pSize = sizeOf(pParent);
+        int qSize = sizeOf(qParent);
         if (pSize > qSize){
             parent[qParent] = pParent;
             parent[pParent] -= qSize;
@@ -65,11 +66,13 @@ public class QuickUnionDS implements DisjointSets {
     }
 
     public void printDS() {
+        System.out.print("Set:\t");
         for (int i = 0; i < this.parent.length; i++){
             System.out.print(parent[i]);
             System.out.print("\t");
         }
         System.out.println();
+        System.out.print("Index:\t");
         for (int i = 0; i < this.parent.length; i++){
             System.out.print(i);
             System.out.print("\t");
