@@ -28,6 +28,22 @@ public class Trieset {
         return result;
     }
 
+    public List<String> collectWithPrefix(String prefixString){
+        List<String> result = new ArrayList<>();
+        char[] prefixChars = prefixString.toCharArray();
+        Node p = this.root;
+        for (int i = 0; i < prefixChars.length; i++){
+            if(p.next.get(prefixChars[i]) == null){
+                return result;
+            }
+            p = (Trieset.Node)p.next.get(prefixChars[i]);
+        }
+        for (int i = 0; i < this.R; i++){
+            colHelper(prefixString + String.valueOf((char)i), result, (Trieset.Node) p.next.get((char)i));
+        }
+        return result;
+    }
+
     private void colHelper(String c, List<String> resTmp, Node n){
         if (n == null){
             return;
@@ -60,6 +76,6 @@ public class Trieset {
         testTrieSet.add("new");
         testTrieSet.add("newyork");
         System.out.println(testTrieSet.collect());
+        System.out.println(testTrieSet.collectWithPrefix("n"));
     }
-
 }
